@@ -1,9 +1,15 @@
-
-# No añadir las variables de entorno al repositorio
-.env
-
-# Tampoco añadir la carpeta node_modules
-node_modules/
-
-# Ni tampoco la carpeta sql que contiene la base de datos
-sql/
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
