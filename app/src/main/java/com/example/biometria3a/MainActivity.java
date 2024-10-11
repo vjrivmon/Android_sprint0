@@ -60,15 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
-    private static final String ETIQUETA_LOG = ">>>>";
-    private static final String ETIQUETA_LOG2 = "<<<<";
+    private static final String ETIQUETA_LOG = ">>>>";  // Etiqueta para los mensajes de log
+    private static final String ETIQUETA_LOG2 = "<<<<"; // Etiqueta para los mensajes de log
 
-    private static final String ETIQUETA_LOG3 = "zzzzfallozzzz";
-    private static final String ETIQUETA_LOG4 = "1111";
+    private static final String ETIQUETA_LOG3 = "zzzzfallozzzz";  // Etiqueta para los mensajes de log
+    private static final String ETIQUETA_LOG4 = "1111";  // Etiqueta para los mensajes de log
 
     //private Medidas medida=new Medidas(1,1,1,1);
 
-    public Button mandarPost;
+    public Button mandarPost;  
 
 
     private TextView textViewDispositivos; // Declarar el TextView
@@ -77,26 +77,28 @@ public class MainActivity extends AppCompatActivity {
      double valorMajor;
 
 
-    private static final int CODIGO_PETICION_PERMISOS = 11223344;
+    private static final int CODIGO_PETICION_PERMISOS = 11223344;  // Código de petición de permisos 
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
-    private BluetoothLeScanner elEscanner;
+    private BluetoothLeScanner elEscanner;  // El objeto que escanea dispositivos BTLE
 
-    private ScanCallback callbackDelEscaneo;
+    private ScanCallback callbackDelEscaneo;  // El callback que se ejecuta cuando se detecta un dispositivo
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
 
+// -> buscarTodosLosDispositivosBTLE ->
+// Método para buscar todos los dispositivos BTLE  disponibles
 
-    private void buscarTodosLosDispositivosBTLE() {
+    private void buscarTodosLosDispositivosBTLE() {   // Método para buscar todos los dispositivos BTLE
         Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): empieza ");
 
         Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): instalamos scan callback ");
 
         this.callbackDelEscaneo = new ScanCallback() {
             @Override
-            public void onScanResult(int callbackType, ScanResult resultado) {
+            public void onScanResult(int callbackType, ScanResult resultado) {   // Método que se ejecuta cuando se detecta un dispositivo
                 super.onScanResult(callbackType, resultado);
                 Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): onScanResult() ");
 
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onBatchScanResults(List<ScanResult> results) {
+            public void onBatchScanResults(List<ScanResult> results) {  // Método que se ejecuta cuando se detectan varios dispositivos
                 super.onBatchScanResults(results);
                 Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): onBatchScanResults() ");
 
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onScanFailed(int errorCode) {
+            public void onScanFailed(int errorCode) {  // Método que se ejecuta cuando falla el escaneo
                 super.onScanFailed(errorCode);
                 Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): onScanFailed() ");
 
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): empezamos a escanear ");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {  // Comprobar si tenemos permisos para escanear
             Log.d(ETIQUETA_LOG, " buscarTodosLosDispositivosBTL(): NO tengo permisos para escanear ");
             ActivityCompat.requestPermissions(
                     MainActivity.this,
@@ -139,10 +141,13 @@ public class MainActivity extends AppCompatActivity {
 
     // ()
     // --------------------------------------------------------------
-    private void mostrarInformacionDispositivoBTLE(ScanResult resultado) {
 
-        BluetoothDevice bluetoothDevice = resultado.getDevice();
-        byte[] bytes = resultado.getScanRecord().getBytes();
+    // ScanResult -> mostrarInformacionDispositivoBTLE ->
+    // Método para mostrar la información de un dispositivo BTLE
+    private void mostrarInformacionDispositivoBTLE(ScanResult resultado) {  
+
+        BluetoothDevice bluetoothDevice = resultado.getDevice(); // Obtener el dispositivo Bluetooth
+        byte[] bytes = resultado.getScanRecord().getBytes(); // Obtener los datos del escaneo
         int rssi = resultado.getRssi();
 
         Log.d(ETIQUETA_LOG, " ****************************************************");
@@ -197,11 +202,18 @@ public class MainActivity extends AppCompatActivity {
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
+    // --> getMedicionsBeacon --> resultado
     private double getMedicionsBeacon(ScanResult resultado) {
         byte[] bytes = resultado.getScanRecord().getBytes();
         TramaIBeacon tib = new TramaIBeacon(bytes);
         return Utilidades.bytesToInt(tib.getMinor());
     }
+
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+
+    // -->
 
     private String obtenerInformacionDispositivoBTLE(ScanResult resultado) {
         BluetoothDevice bluetoothDevice = resultado.getDevice();
