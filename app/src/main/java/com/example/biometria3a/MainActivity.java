@@ -661,7 +661,7 @@ public class MainActivity extends AppCompatActivity {
         //this.buscarEsteDispositivoBTLE( Utilidades.stringToUUID( "EPSG-GTI-PROY-3A" ) );
 
         //this.buscarEsteDispositivoBTLE300("INNOVARESCRECER.");
-        this.buscarEsteDispositivoBTLE300("MACHO-LEVANTE-UD");
+        this.buscarEsteDispositivoBTLE300("MATXO-LLEVANT-UD");
 
     } // ()
 
@@ -782,18 +782,14 @@ public class MainActivity extends AppCompatActivity {
 
         //String urlDestino = "http://192.168.0.26:8080/mediciones";
 
-        String urlDestino = "http://172.20.10.5:8080/mediciones";
+        String urlDestino = "http://172.20.10.5:8080/mediciones";//cambiar la ip de aqui a la del ordenador dentro de la wifi
 
         //String urlDestino = "http://192.168.59.175/Proyecto_Biometria/src/api/v1.0/index.php";
         // Crear un objeto JSON e introducir valores
         JSONObject postData = new JSONObject();
         try {
-            /*postData.put("Medicion", medida.getMedicion());
-            postData.put("TipoSensor", medida.getTipoSensor());
-            postData.put("Latitud", medida.getLatitud());
-            postData.put("Longitud", medida.getLongitud());
-            */
-            valorMajor=valorMajor/1000;
+
+            valorMajor=valorMajor/100;
             valorMinor=valorMinor/100;
             // Obtener la fecha y hora actual
             Calendar calendar = Calendar.getInstance();
@@ -801,11 +797,15 @@ public class MainActivity extends AppCompatActivity {
 
             String horaActual = sdfHora.format(calendar.getTime());
 
-            // Usar la hora y fecha actual en postData
+            // Usar la hora  actual en postData
             postData.put("hora", horaActual);
+            //Lugar
             postData.put("lugar", "Gandia");
+            //ID del sensor
             postData.put("id_sensor", 101);
+            //Valor Gas
             postData.put("valorGas", valorMajor);
+            //Valor Fijo
             postData.put("valorTemperatura", valorMinor);
 
 
@@ -892,86 +892,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-/*
-    private class PostDataTask extends AsyncTask<Void, Void, String> {
-        private String urlString;
-        private JSONObject jsonData;
-
-        PostDataTask(String urlString, JSONObject jsonData) {
-            this.urlString = urlString;
-            this.jsonData = jsonData;
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            StringBuilder response = new StringBuilder();
-            HttpURLConnection urlConnection = null;
-            try {
-                // Create URL and open connection
-                URL url = new URL(urlString);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-                urlConnection.setDoOutput(true);
-
-                // Write JSON data to output stream
-                try (OutputStream os = urlConnection.getOutputStream()) {
-                    byte[] input = jsonData.toString().getBytes("utf-8");
-                    os.write(input, 0, input.length);
-                }
-
-                // Read response from input stream
-                try (BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "utf-8"))) {
-                    String responseLine;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                }
-            } catch (Exception e) {
-                Log.d("clienterestandroid", "Error: " + e.getMessage());
-                return null;
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-            return response.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (result != null) {
-                try {
-                    JSONObject response = new JSONObject(result);
-                    String success = response.getString("success");
-                    String message = response.getString("message");
-
-                    if ("1".equals(success)) {
-                        Log.d(ETIQUETA_LOG, "Datos guardados correctamente: " + message);
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.d(ETIQUETA_LOG, "Datos guardados incorrectamente: " + message);
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.d(ETIQUETA_LOG, "Datos guardados incorrectamente");
-            }
-        }
-    }
-}
-
- */
-
-
- // class
-
-
-// --------------------------------------------------------------
-// --------------------------------------------------------------
-// --------------------------------------------------------------
-// --------------------------------------------------------------
-
-

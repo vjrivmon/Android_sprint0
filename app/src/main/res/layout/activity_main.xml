@@ -14,21 +14,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="botonBuscarDispositivosBTLEPulsado"
-        android:text="Buscar Dispositivos BTLE nou 4" />
+        android:text="Buscar Dispositivos BTLE nou 4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/botonDetenerBusquedaDispositivosBTLE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="botonDetenerBusquedaDispositivosBTLEPulsado"
-        android:text="Detener búsaqueda Dispositivos BTLE" />
+        android:text="Detener búsaqueda Dispositivos BTLE"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/botonBuscarNuestroDispositivoBTLE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="botonBuscarNuestroDispositivoBTLEPulsado"
-        android:text="Buscar nuestro dispositivo  BTLE" />
+        android:text="Buscar nuestro dispositivo  BTLE"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/mandarPost"
@@ -36,7 +48,11 @@
         android:layout_height="59dp"
 
         android:text="mandarPost"
-        android:textColorLink="#DB0707" />
+        android:textColorLink="#DB0707"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
 
     <TextView
@@ -44,23 +60,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="#FF69B4" />
+        android:textColor="#FF69B4"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/nuestrodisp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#F01515"
-        android:layout_margin="26dp" />
+        android:layout_margin="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/valoresSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="26dp"
         android:text="Valores del sensor"
         android:textColor="#00A2F0"
         android:textSize="20dp"
-        android:layout_margin="26dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 
 
 </android.widget.LinearLayout>
